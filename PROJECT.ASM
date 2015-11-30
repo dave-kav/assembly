@@ -322,11 +322,7 @@ MAIN    PROC    FAR
         MOV     BX,50
         CALL    WOODS
 
-		CALL	MOUSE
-			
-        ;wait for keyboard input
-        ;MOV     AH,00H
-        ;INT     16H
+	CALL	MOUSE
 		
         ;revert to text input        
         MOV     AL,2
@@ -769,70 +765,70 @@ WOODS               ENDP
 ;Registers affected:    None
 ;====================================================================
 BIRD            PROC
-                PUSH    CX
-                PUSH    DX
-				PUSH	BX
-				PUSH	AX
-				MOV		BX,2
+        PUSH    CX
+        PUSH    DX
+	PUSH	BX
+	PUSH	AX
+	MOV	BX,2
 
-FLAPUP:			CMP		BX,0
-				JE		FLAPDOWN
-				CALL	WRITEPIXEL
-				INC		CX
-				CALL	WRITEPIXEL
-				INC		DX
-				INC		CX
-				CALL	WRITEPIXEL
-				INC		CX
-				INC		DX
-				CALL    WRITEPIXEL
-				INC		CX
-				DEC		DX
-				CALL	WRITEPIXEL
-				INC		CX
-				DEC		DX
-				CALL 	WRITEPIXEL
-				INC		CX
-				CALL 	WRITEPIXEL
-				CALL	DELAY
-				MOV		AL,9
-				DEC		BX
-				SUB		CX,6
-				JMP		FLAPUP
+FLAPUP:	CMP	BX,0
+	JE	FLAPDOWN
+	CALL	WRITEPIXEL
+	INC	CX
+	CALL	WRITEPIXEL
+	INC	DX
+	INC	CX
+	CALL	WRITEPIXEL
+	INC	CX
+	INC	DX
+	CALL    WRITEPIXEL
+	INC	CX
+	DEC	DX
+	CALL	WRITEPIXEL
+	INC	CX
+	DEC	DX
+	CALL 	WRITEPIXEL
+	INC	CX
+	CALL 	WRITEPIXEL
+	CALL	DELAY
+	MOV	AL,9
+	DEC	BX
+	SUB	CX,6
+	JMP	FLAPUP
 				
-FLAPDOWN:       MOV		BX,2
-				ADD		DX,3
-				MOV		AL,0
+FLAPDOWN:MOV	BX,2
+	ADD	DX,3
+	MOV	AL,0
 
-FLAPDAGAIN:		CMP		BX,0
-				JE		FINFLAP
-				CALL	WRITEPIXEL
-				INC		CX
-				CALL	WRITEPIXEL
-				INC		CX
-				DEC		DX
-				CALL	WRITEPIXEL
-				INC		CX
-				DEC		DX
-				CALL	WRITEPIXEL
-				INC		CX
-				INC		DX
-				CALL	WRITEPIXEL
-				INC		CX
-				INC		DX
-				CALL	WRITEPIXEL
-				INC		CX
-				CALL	WRITEPIXEL
-				CALL	DELAY
-				MOV		AL,9
-				DEC		BX
-				SUB		CX,6
-				JMP		FLAPDAGAIN
+FLAPDAGAIN:CMP	BX,0
+	JE	FINFLAP
+	CALL	WRITEPIXEL
+	INC	CX
+	CALL	WRITEPIXEL
+	INC	CX
+	DEC	DX
+	CALL	WRITEPIXEL
+	INC	CX
+	DEC	DX
+	CALL	WRITEPIXEL
+	INC	CX
+	INC	DX
+	CALL	WRITEPIXEL
+	INC	CX
+	INC	DX
+	CALL	WRITEPIXEL
+	INC	CX
+	CALL	WRITEPIXEL
+	CALL	DELAY
+	MOV	AL,9
+	DEC	BX
+	SUB	CX,6
+	JMP	FLAPDAGAIN
 				
-FINFLAP:		POP		AX
-				POP		BX
-				POP		DX
-				POP		CX
+FINFLAP:POP	AX
+	POP	BX
+	POP	DX
+	POP	CX
                 RET
 BIRD            ENDP
 
@@ -849,41 +845,40 @@ BIRD            ENDP
 ;====================================================================
 ANIMATE PROC
         PUSH    SI
-		PUSH	DI
-		PUSH	DX
-		PUSH	CX
-		PUSH	AX
+	PUSH	DI
+	PUSH	DX
+	PUSH	CX
+	PUSH	AX
 		
-		MOV     AL,0
+	MOV     AL,0
         MOV     DX,325
         MOV     CX,590
-		MOV		DI,15
-		MOV		SI,20
+	MOV	DI,15
+	MOV	SI,20
 		
-FLYUP:	CMP		SI,0
-		JE		FLYOVER
-		CALL	BIRD
-		CALL	DELAY
-		DEC		SI
-		SUB		DX,3
-		JMP		FLYUP
-		CALL	DELAY
+FLYUP:	CMP	SI,0
+	JE	FLYOVER
+	CALL	BIRD
+	CALL	DELAY
+	DEC	SI
+	SUB	DX,3
+	JMP	FLYUP
+	CALL	DELAY
 
-FLYOVER:CMP		DI,0
-		JE		FINFLY
-		CALL	BIRD
-		CALL	DELAY
-		DEC		DI
-		ADD		CX,3
-		JMP		FLYOVER
-		CALL	DELAY
+FLYOVER:CMP	DI,0
+	JE	FINFLY
+	CALL	BIRD
+	CALL	DELAY
+	DEC	DI
+	ADD	CX,3
+	JMP	FLYOVER
+	CALL	DELAY
 		
-FINFLY: POP		AX
-		POP		CX
-		POP		DX
-		POP		DI
-		POP		SI
-		
+FINFLY: POP	AX
+	POP	CX
+	POP	DX
+	POP	DI
+	POP	SI
 		RET
 ANIMATE	ENDP
 
@@ -900,13 +895,13 @@ ANIMATE	ENDP
 ;====================================================================
 ANIMATE2 PROC
         PUSH    BX
-		PUSH	DI
-		PUSH	DX
-		PUSH	CX
-		PUSH	AX
-		PUSH	SI
-		
-		MOV     DI,10
+	PUSH	DI
+	PUSH	DX
+	PUSH	CX
+	PUSH	AX
+	PUSH	SI
+	
+	MOV     DI,10
         MOV     BL,7
         MOV     BH,14
         MOV     CX,17
@@ -914,18 +909,18 @@ ANIMATE2 PROC
         MOV     AL,14
         MOV     SI,8
         CALL    WINDOW
-		MOV		AL,15
-		ADD     CX,19
+	MOV	AL,15
+	ADD     CX,19
         ADD     DX,200
         CALL    DOOR
 		
 		
-FINANI2:POP		SI
-		POP		AX
-		POP		CX
-		POP		DX
-		POP		DI
-		POP		BX
+FINANI2:POP	SI
+	POP	AX
+	POP	CX
+	POP	DX
+	POP	DI
+	POP	BX
 		
 		RET
 ANIMATE2	ENDP
@@ -942,24 +937,24 @@ ANIMATE2	ENDP
 ;
 ;Registers affected:    None
 ;====================================================================
-DELAY                   PROC
-                PUSH    CX
-                PUSH    DX
-                MOV     CX,100
+DELA	        PROC
+	PUSH    CX
+        PUSH    DX
+        MOV     CX,100
         
-OUTERLOOP:      DEC     CX
-                CMP     CX,0
-                JE      FINDELAY
-                MOV     DX,0FFFH
-INNERLOOP:      DEC     DX
-                CMP     DX,0
-                JE      OUTERLOOP
-                JMP     INNERLOOP
+OUTERLOOP:DEC	CX
+        CMP     CX,0
+	JE      FINDELAY
+	MOV     DX,0FFFH
+INNERLOOP:DEC   DX
+       	CMP     DX,0
+       	JE      OUTERLOOP
+	JMP     INNERLOOP
                
-FINDELAY:       POP     DX
-                POP     CX
-                RET
-DELAY           ENDP
+FINDELAY:POP	DX
+	POP     CX
+	RET
+DELAY	ENDP
 
 ;====================================================================
 ;Name:                  Mouse 
@@ -973,75 +968,72 @@ DELAY           ENDP
 ;
 ;Registers affected:    None
 ;====================================================================
-MOUSE           PROC
-		PUSH	AX
-		PUSH	BX
-		
-		MOV		AX,01H
-		INT		33H
-		MOV		BX,0H
+MOUSE	PROC
+	PUSH	AX
+	PUSH	BX
+	
+	MOV	AX,01H
+	INT	33H
+	MOV	BX,0H
 
-AGAINMS:MOV		AX,05H
-		INT		33H
-		CMP		BX,1
-		JNE		AGAINMS
+AGAINMS:MOV	AX,05H
+	INT	33H
+	CMP	BX,1
+	JNE	AGAINMS
 		
-		CMP		DX,325
-		JL		NOCLICK1
-		CMP		DX,335
-		JG		NOCLICK1
-		
-		CMP		CX,590
-		JL		NOCLICK1
-		CMP		CX,600
-		JG		NOCLICK1
-		
-		CALL	ANIMATE
-		JMP		AGAINMS
+	CMP	DX,325
+	JL	NOCLICK1
+	CMP	DX,335
+	JG	NOCLICK1
+	
+	CMP	CX,590
+	JL	NOCLICK1
+	CMP	CX,600
+	JG	NOCLICK1
+	
+	CALL	ANIMATE
+	JMP	AGAINMS
 		
 NOCLICK1:CMP	DX,339
-		JL		NOCLICK2
-		CMP		DX,395
-		JG		NOCLICK2
+	JL	NOCLICK2
+	CMP	DX,395
+	JG	NOCLICK2
 		
-		CMP		CX,36
-		JL		NOCLICK2
-		CMP		CX,96
-		JG		NOCLICK2
+	CMP	CX,36
+	JL	NOCLICK2
+	CMP	CX,96
+	JG	NOCLICK2
 		
-		CALL	ANIMATE2
-		JMP		AGAINMS
+	CALL	ANIMATE2
+	JMP	AGAINMS
 
 NOCLICK2:CMP	DX,339
-		JL		NOCLICK3
-		CMP		DX,355
-		JG		NOCLICK3
-		
-		CMP		CX,36
-		JL		NOCLICK3
-		CMP		CX,66
-		JG		NOCLICK3
-		
+	JL	NOCLICK3
+	CMP	DX,355
+	JG	NOCLICK3
+	
+	CMP	CX,36
+	JL	NOCLICK3
+	CMP	CX,66
+	JG	NOCLICK3
+	
 NOCLICK3:CMP	DX,109
-		JL		AGAINMS
-		CMP		DX,139
-		JG		AGAINMS
+	JL	AGAINMS
+	CMP	DX,139
+	JG	AGAINMS
+	
+	CMP	CX,36
+	JL	AGAINMS
+	CMP	CX,66
+	JG	AGAINMS
+	
+	JMP	FINISHMS
 		
-		CMP		CX,36
-		JL		AGAINMS
-		CMP		CX,66
-		JG		AGAINMS
-		
-		JMP		FINISHMS
-		
-FINISHMS:POP		BX
-		 POP		AX
+FINISHMS:POP	BX
+	 POP	AX
      
-                RET
-MOUSE           ENDP
+	RET
+MOUSE	ENDP
 
-		;display mouse
-
-        
 CSEG    ENDS
         END     MAIN
